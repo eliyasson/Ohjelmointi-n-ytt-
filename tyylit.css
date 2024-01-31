@@ -101,6 +101,14 @@
     font-size: 14px;
     box-shadow: 10px 10px 5px gray;
   }
+  .aside2{
+    background-color: #7e6b174e;
+    padding: 15px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    
+  }
 
   .varjo{
     box-shadow: 10px 10px 5px grey;

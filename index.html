@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Spirax' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="tyylit.css">
   <title>KuvaKantele</title>
   <style>
@@ -43,13 +44,36 @@
           <li><a href="#contact" onclick="w3_close()"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Contact</a></li>
          </ul>
          <div class="aside">
-            <h2> Otsikko 1 </h2>
-            <p> Browse landscape pictures from around the world </p>
-            <h2> Otsikko 2 </h2>
-            <p> Browse landscape pictures from around the world </p>
-            <h2> Otsikko 3 </h2>
-            <p> Browse landscape pictures from around the world </p>
-            <img src="kuva1.jpg" width="460" height="345">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                  <h1 class="fw-bold mb-0 fs-2">Kirjaudu sisään</h1>
+                </div>
+          
+                <div class="modal-body p-5 pt-0">
+                  <form action="signin.php" method="post">
+                    <div class="form-floating mb-3">
+                      <input type="text" name="username" class="aside2 form-control rounded-3" id="floatingInput" placeholder="Username">
+                      <label for="username">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="password" name="password" class="aside2 form-control rounded-3" id="floatingPassword" placeholder="Password" fdprocessedid="fqch9">
+                      <label  for="password">Password</label>
+                    </div>
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit"  fdprocessedid="jmae6a">Kirjaudu</button>
+                    <hr class="my-4">
+                    <h2 class="fs-5 fw-bold mb-3">Jos sinulla ei ole tiliä, paina Sign up</h2>
+                  </form>
+                  <form action="signup.php" method="post">
+                    <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit" fdprocessedid="e7wrx4">
+                      
+                      Sign up
+                    </button>
+                  </form>
+          
+                </div>
+              </div>
+            </div>
           </div>
        </div>
    
@@ -326,5 +350,7 @@
     captionText.innerHTML = element.alt;
   }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </body>
 </html>
