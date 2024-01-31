@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Spirax' rel='stylesheet'>
+    <link rel="stylesheet" href="tyylit.css">
+    <title>Steampunk www-harjoitus</title>
+    <style>
+      .gallery {
+        border: 1px solid #ccc;
+      }
+      .gallery:hover {
+        border:3px solid orange;
+      }
+      .img {
+        margin: 0;                   /*1. kuvan sijoittaminen www-sivulla keskelle*/
+        position: absolute;          /*1*/
+        top: 50%;                    /*1*/
+        left: 50%;                   /*1*/
+        transform: translate(-50%, -50%); /*1*/
+        width: 100%;            /*2. kuvan koon muuttumiseen näytön koon mukaan */
+        height: auto;           /*2*/
+      } 
+      .gallery img {
+        width: 100%;
+        height: auto;
+      }
+
+      .desc {
+        padding: 15px;
+        text-align: center;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .responsive {
+        padding: 0 6px;
+        float: left;
+        width: 24.99999%;
+      }
+      @media only screen and (max-width: 700px) {
+        .responsive {
+            width: 49.99999%;
+            margin: 6px 0;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        .responsive {
+            width: 100%;
+        }
+      }
+      .clearfix:after {
+       content: "";
+       display: table;
+       clear: both;
+     }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1> Metsä </h1>
+      </div>
+   
+      <div class="row">
+   
+       <div class="col-3 col-s-3 menu">
+         <ul>
+          <li><a href="index.html">Landscape</a></li>
+          <li><a href="sivu1.html"> River</a></li>
+          <li><a href="sivu2.html">Forest</a></li>
+          <li><a href="sivu3.html">City</a></li>
+         </ul>
+         <div class="aside">
+            <h2> Otsikko 1 </h2>
+            <p> Browse landscape pictures from around the world </p>
+            <h2> Otsikko 2 </h2>
+            <p> Browse landscape pictures from around the world </p>
+            <h2> Otsikko 3 </h2>
+            <p> Browse landscape pictures from around the world </p>
+      
+          </div>
+       </div>
+   
+       <div class="col-9 col-s-9">
+        
+         <h1> Landscape </h1>
+         <p> Browse landscape pictures from around the world, including mountains, 
+             seascapes, forests, deserts and a lot more. This collection of beautiful 
+             and breathtaking photos is free for personal and commercial use. </p>
+          
+         <div class="responsive">
+          <div class="gallery">
+            <a target="_self" href="kuva2.html">
+              <img class="varjo" id="kuva2" src="kuva2.jpg" alt="Steampunk piirros" width="600" height="600">
+            </a>
+            <div class="desc"> Kuvaan liittyvä teksti tähän </div>
+          </div>
+         </div>
+     
+         <div class="responsive">
+          <div class="gallery">
+           <a target="_self" href="kuva3.html">
+              <img class="varjo" id="kuva3" src="kuva3.jpg" alt="Forest" width="600" height="600">
+           </a>
+           <div class="desc"> Kuvaan liittyvä teksti tähän </div>
+          </div>
+         </div>
+     
+         <div class="responsive">
+          <div class="gallery">
+           <a target="_self" href="kuva4.html">
+             <img class="varjo" id="kuva4" src="kuva4.png" alt="Northern Lights" width="600" height="400">
+           </a>
+           <div class="desc"> Kuvaan liittyvä teksti tähän </div>
+          </div>
+         </div>
+     
+         <div class="responsive">
+          <div class="gallery">
+           <a target="_self" href="kuva5.html">
+             <img class="varjo" id="kuva5" src="kuva5.jpeg" alt="Mountains" width="600" height="400">
+           </a>
+           <div class="desc"> Kuvaan liittyvä teksti tähän </div>
+          </div>
+         </div>
+     
+         <div class="clearfix"></div>
+       </div>
+   
+       <!-- <div class="col-3 col-s-12">
+        <div class="aside">
+          <h2> Otsikko 1 </h2>
+          <p> Browse landscape pictures from around the world </p>
+          <h2> Otsikko 2 </h2>
+          <p> Browse landscape pictures from around the world </p>
+          <h2> Otsikko 3 </h2>
+          <p> Browse landscape pictures from around the world </p>
+        </div>
+       </div> -->
+   
+      </div>
+   
+      <div class="footer">
+        <p>This collection of beautiful and breathtaking photos is free for personal and commercial use.</p>
+      </div>
+   
+</body>
+</html>
