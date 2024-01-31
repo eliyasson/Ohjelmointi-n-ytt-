@@ -3,8 +3,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Spirax">
-  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Spirax' rel='stylesheet'>
   <link rel="stylesheet" href="tyylit.css">
   <title>KuvaKantele</title>
@@ -36,7 +36,7 @@
    
        <div class="col-3 col-s-3 menu">
          <ul>
-          <li><a href="index.html">Landscape</a></li>
+          <li><a href="index.html">Etusivu</a></li>
           <li><a href="sivu1.html"> River</a></li>
           <li><a href="sivu2.html">Forest</a></li>
           <li><a href="sivu3.html">City</a></li>
@@ -66,7 +66,7 @@
     <div class="w3-col l3 s6">
       <div class="w3-container">
         <div class="w3-display-container">
-          <div class="image-container"><img src="./kuva//IMG20240110161320~2.jpg" ></div>
+          <div class="image-container"><img src="./kuva//IMG20240110161320~2.jpg" style="width:100%" onclick="onClick(this)"></div>
           
           <span class="w3-tag w3-display-topleft">New</span>
           <div class="w3-display-middle w3-display-hover">
@@ -77,7 +77,7 @@
         <p>Ripped Skinny Jeans<br><b>$24.99</b></p>
       </div>
       <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20230503135440.jpg" ></div>
+        <div class="image-container"><img src="./kuva/IMG20230503135440.jpg" onclick="onClick(this)"></div>
         
         <p>Mega Ripped Jeans<br><b>$19.99</b></p>
       </div>
@@ -86,7 +86,7 @@
     <div class="w3-col l3 s6">
       <div class="w3-container">
         <div class="w3-display-container">
-          <div class="image-container"><img src="./kuva/IMG20230812140517.jpg" style="width:100%"></div>
+          <div class="image-container"><img src="./kuva/IMG20230812140517.jpg" style="width:100%" onclick="onClick(this)"></div>
           
           <span class="w3-tag w3-display-topleft">New</span>
           <div class="w3-display-middle w3-display-hover">
@@ -96,7 +96,7 @@
         <p>Mega Ripped Jeans<br><b>$19.99</b></p>
       </div>
       <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20231001142208.jpg" style="width:100%"></div>
+        <div class="image-container"><img src="./kuva/IMG20231001142208.jpg" style="width:100%" onclick="onClick(this)"></div>
         
         <p>Washed Skinny Jeans<br><b>$20.50</b></p>
       </div>
@@ -104,13 +104,13 @@
 
     <div class="w3-col l3 s6">
       <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20240102123511.jpg" style="width:100%"></div>
+        <div class="image-container"><img src="./kuva/IMG20240102123511.jpg" style="width:100%" onclick="onClick(this)"></div>
         
         <p>Washed Skinny Jeans<br><b>$20.50</b></p>
       </div>
       <div class="w3-container">
         <div class="w3-display-container">
-          <div class="image-container"><img src="./kuva/IMG20231116142958_01.jpg" style="width:100%"></div>
+          <div class="image-container"><img src="./kuva/IMG20231116142958_01.jpg" style="width:100%" onclick="onClick(this)"></div>
           
           <span class="w3-tag w3-display-topleft">Sale</span>
           <div class="w3-display-middle w3-display-hover">
@@ -123,12 +123,12 @@
 
     <div class="w3-col l3 s6">
       <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20231210105955.jpg" style="width:100%"></div>
+        <div class="image-container"><img src="./kuva/IMG20231210105955.jpg" style="width:100%" onclick="onClick(this)"></div>
         
         <p>Vintage Skinny Jeans<br><b>$14.99</b></p>
       </div>
       <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20231215162916.jpg" style="width:100%"></div>
+        <div class="image-container"><img src="./kuva/IMG20231215162916.jpg" style="width:100%" onclick="onClick(this)"></div>
         
         <p>Ripped Skinny Jeans<br><b>$24.99</b></p>
       </div>
@@ -149,26 +149,137 @@
 
   <!-- About Section -->
   <div class="w3-container w3-padding-32 w3-center">  
-    <h3><b>About Us</b></h3><br>
-    <div class="w3-padding-">
+    <h3 class="w3-black w3-button" ><b>About Us</b></h3><br>
+    <div class="w3-row-padding">
       <h4><b>Our Story</b></h4>
       <p class="w3-center w3-padding-64"><span class="w3 w3-wide">Kuvakantele Photography was born from a deep love for the art of capturing moments. Founded by Eliyas k., our team is driven by creativity, passion, and a commitment to delivering stunning visuals that leave a lasting impression.</span></p>
-      <img src="./kuva/Snapchat-1700458993 (1).jpg" alt="Me" >
-      
+      <video width="1000" height="600" controls onclick="onClick(this)">
+        <source src="./kuva/VID20231127151342 (1).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </div>
   <hr>
         <!-- Photo grid (modal) -->
-        <div class="w3-row-padding">
-          <div class="w3-half">
-            <div class="image-container"><img src="./kuva/IMG20240124145950.jpg" style="width:100%"></div>
-          </div>
-      
-          <div class="w3-half">
-            <div class="image-container"><img src="./kuva/Snapchat-1700458993 (1).jpg" style="width:100%"></div>
+        <div class="w3-container w3-padding-32 w3-center">  
+          <h3><b>Philosophy</b></h3>
+          <p class="w3-center w3-padding-32"><span class="w3 w3-wide">At Kuvakantele, we believe in the power of storytelling through imagery. Each photograph is a chapter in the narrative of your life, and we strive to make those chapters extraordinary. Our approach blends technical expertise with an artistic touch to create images that speak volumes</span></p>
+          <div class="w3-row-padding">
+            <div class="w3-half">
+              <div class="image-container" ><img src="./kuva/IMG20240124145950.jpg" style="width:100%" onclick="onClick(this)"></div>
+            </div>
+        
+            <div class="w3-half">
+              <div class="image-container"><img src="./kuva/IMG20230503135440.jpg" style="width:100%" onclick="onClick(this)"></div>
+            </div>
           </div>
         </div>
+
+        <!-- Packages / Pricing Tables -->
+  <div class="w3-container" id="packages" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Packages.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p class="w3-center w3-padding-64"><span class="w3 w3-wide">Don't miss out on our limited-time special packages! Grab the perfect deal that suits your needs and enjoy exclusive benefits. It's the perfect opportunity to experience more for less.</span></p>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-half w3-margin-bottom">
+      <ul class="w3-ul w3-light-grey w3-center">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic Photography</li>
+            <li class="w3-padding-16">Photo Session</li>
+            <li class="w3-padding-16">10 edited images</li>
+            <li class="w3-padding-16">Digital Delivery</li>
+            <li class="w3-padding-16">Online Gallery</li>
+            <li class="w3-padding-16">20% off on additional prints</li>
+            <li class="w3-padding-16">
+                <h2>$199</h2>
+                <span class="w3-opacity">per session</span>
+            </li>
+            <li class="w3-light-grey w3-padding-24">
+                <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
+            </li>
+        </ul>
+    </div>
+        
+    <div class="w3-half">
+      <ul class="w3-ul w3-light-grey w3-center">
+        <li class="w3-red w3-xlarge w3-padding-32">Pro Photography & Filming</li>
+            <li class="w3-padding-16">Full-Day Coverage</li>
+            <li class="w3-padding-16">High-Quality Edited Photos and Videos</li>
+            <li class="w3-padding-16">Professional Editing</li>
+            <li class="w3-padding-16">Online Gallery</li>
+            <li class="w3-padding-16">50% off on additional prints</li>
+            <li class="w3-padding-16">
+                <h2>$249</h2>
+                <span class="w3-opacity">per session</span>
+            </li>
+            <li class="w3-light-grey w3-padding-24">
+                <button class="w3-button w3-red w3-padding-large w3-hover-black">Sign Up</button>
+            </li>
+        </ul>
+    </div>
+  </div>
+  
+  <div class="w3-container" id="contact" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Contact.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+  
+    <p class="w3-center w3-padding-64"><span class="w3 w3-wide">Have a question, want to discuss a project, or simply share your thoughts? We'd love to hear from you. Use the contact form below, and we'll get back to you as soon as possible.</span></p>
+   
+  </div>
+        <div class="w3-container w3-grey w3-padding-32">
+          <h1>Subscribe</h1>
+          <p>To get special offers and VIP treatment:</p>
+          <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:30%"></p>
+          <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+          <div class="w3-row-padding">
+            <div class="w3-col s4">
+              <h4>Contact</h4>
+              <h6>Questions? Go ahead.</h6>
+              <form action="/action_page.php" target="_blank">
+                <p><input class="w3-input w3-border" type="text" placeholder="Name" name="Name" required></p>
+                <p><input class="w3-input w3-border" type="text" placeholder="Email" name="Email" required></p>
+                <p><input class="w3-input w3-border" type="text" placeholder="Subject" name="Subject" required></p>
+                <p><input class="w3-input w3-border" type="text" placeholder="Message" name="Message" required></p>
+                <button type="submit" class="w3-button w3-block w3-black">Send</button>
+              </form>
+            </div>
       
+            <div class="w3-col s4">
+              <h4>About</h4>
+              <p>About us</p>
+              <p>We're hiring</p>
+              <p>Support</p>
+              <p>Find store</p>
+              <p>Shipment</p>
+              <p>Payment</p>
+              <p>Gift card</p>
+              <p>Return</p>
+              <p>Help</p>
+            </div>
+      
+            <div class="w3-col s4 w3-justify">
+              <h4>Store</h4>
+              <p><i class="fa fa-fw fa-map-marker"></i>Helsinki</p>
+              <p><i class="fa fa-fw fa-phone"></i> 045678901</p>
+              <p><i class="fa fa-fw fa-envelope"></i>eliyas@gmail.com</p>
+              <h4>We accept</h4>
+              <p><i class="fa fa-fw fa-cc-amex"></i> Visa</p>
+              <p><i class="fa fa-fw fa-credit-card"></i> Credit Card</p>
+              <br>
+              <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
+              <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
+              <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>
+              <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>
+              <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
+              <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>
+            </div>
+          </div>
+        </footer>
         <!-- Modal for full size images on click-->
         <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
           <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
@@ -177,15 +288,42 @@
             <p id="caption"></p>
           </div>
         </div>
-        
        </div>
-   
-   
       </div>
+      
+   <!-- W3.CSS Container -->
    
-      <div class="footer">
-        <p>This collection of beautiful and breathtaking photos is free for personal and commercial use.</p>
-      </div>
    
+  <div class="footer w3-container w3-padding-32">
+    <footer class="footer w3-content  w3-text-grey w3-xlarge">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-snapchat w3-hover-opacity"></i>
+      <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+      <i class="fa fa-twitter w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </footer>
+    <p >Powered by: eliyas k. </p></div>
+  
+  <script>
+  // Script to open and close sidebar
+  function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+  }
+  
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+  }
+
+  // Modal Image Gallery
+  function onClick(element) {
+    document.getElementById("img01").src = element.src;
+    document.getElementById("modal01").style.display = "block";
+    var captionText = document.getElementById("caption");
+    captionText.innerHTML = element.alt;
+  }
+</script>
 </body>
 </html>
