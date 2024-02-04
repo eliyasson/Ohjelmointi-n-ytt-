@@ -52,7 +52,7 @@
     font-family: 'Spirax', cursive;
   }
   .header {
-    background-color:#654b10b3;
+    background-color: #9DBC98;
     color: #f4e5b7;
     padding: 15px;
     text-align: center;
@@ -63,7 +63,7 @@
     padding: 0;
   }
   .menu li {
-    background-color: #7e6a12;
+    background-color: #638889;
     font-size: 110%;
     padding: 8px;
     margin-bottom: 7px;
@@ -94,7 +94,7 @@
 
 
   .aside {
-    background-color: #675813;
+    background-color: #638889;
     padding: 15px;
     color: #ffffff;
     text-align: center;
@@ -102,7 +102,7 @@
     box-shadow: 10px 10px 5px gray;
   }
   .aside2{
-    background-color: #7e6b174e;
+    background-color: #638889;
     padding: 15px;
     color: #ffffff;
     text-align: center;
@@ -114,7 +114,7 @@
     box-shadow: 10px 10px 5px grey;
   } 
   .footer {
-    background-color: #453207;
+    background-color: #9DBC98;
     color: #ffffff;
     text-align: center;
     font-size: 12px;
