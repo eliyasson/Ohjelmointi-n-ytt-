@@ -1,3 +1,44 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    include 'login.php';
+
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $usertype = $_POST['usertype'];
+
+
+    if (empty($name) || empty($address) || empty($phone) || empty($email) || empty($usertype) || empty($password)) {
+        echo "<p class='error-message'>All fields are required.</p>";
+    } elseif ($usertype !== 'librarian' && $usertype !== 'customer') {
+        echo "<p class='error-message'>Please select a valid user type (librarian or customer).</p>";
+    } else {
+
+        $insertQuery = "INSERT INTO customers (name, address, phone, email, usertype, password)
+            VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $insertQuery);
+
+        mysqli_stmt_bind_param($stmt, "sssss", $name, $address, $phone, $email, $usertype, $password);
+
+        $insertResult = mysqli_stmt_execute($stmt);
+
+        if ($insertResult) {
+            echo "<p class='success-message'>Signup Successful</p>";
+            header('Location: index.html');
+            exit();
+        } else {
+            echo "<p class='error-message'>Insertion failed: " . mysqli_error($conn) . "</p>";
+        }
+        mysqli_stmt_close($stmt);
+    }
+    mysqli_close($conn);
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,43 +77,43 @@
         <form action="signup.php" method="post">
             <div class="modal-header p-5 pb-4 border-bottom-0">
                 <h1 class="fw-bold mb-0 fs-2">Kirjaudu sisään</h1>
-                <a href="index.html" onclick="$('#yourModalId').modal('hide');" aria-label="Close">Close</a>
+                <a href="home.html" onclick="$('#yourModalId').modal('hide');" aria-label="Close">Close</a>
             </div>
             <p style="margin-left: 10px;"  class="fw-bold fs-5 mt-3">Ennen kuin rekisteröidyt, valitse roolisi: joko librarian or customer.</p>
 
-            <div class="form-check fw-bold">
-                <input class="form-check-input" type="radio" name="user_type" id="librarianRadio" value="librarian">
-                <label class="form-check-label" for="librarianRadio">
-                    Librarian
-                </label>
-            </div>
-            <div class="form-check fw-bold">
-                <input class="form-check-input" type="radio" name="user_type" id="customerRadio" value="customer">
-                <label class="form-check-label" for="customerRadio">
-                    Customer
-                </label>
-            </div>
-
             <div class="modal-body p-5 pt-0">
+                <div class="form-check fw-bold">
+                    <input class="form-check-input" type="radio" name="usertype" id="adminRadio" value="admin">
+                    <label class="form-check-label" for="adminRadio">
+                        Admin
+                    </label>
+                </div>
+                <div class="form-check fw-bold">
+                    <input class="form-check-input" type="radio" name="usertype" id="customerRadio" value="customer">
+                    <label class="form-check-label" for="customerRadio">
+                        Customer
+                    </label>
+                </div>
+
                 <div class="form-floating mb-3">
-                    <input type="text" name="username" class="form-control rounded-3" id="floatingInput" placeholder="Username">
-                    <label for="username">Name</label>
+                    <input type="text" name="name" class="form-control rounded-3" id="floatingInput" placeholder="Name">
+                    <label for="name">Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="address" class="form-control rounded-3" id="floatingAddress" placeholder="Address">
+                    <label for="address">Address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="phone" class="form-control rounded-3" id="floatingPhone" placeholder="Phone">
+                    <label for="phone">Phone</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control rounded-3" id="floatingEmail" placeholder="Email">
+                    <label for="email">Email</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" name="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-                    <label  for="password">Address</Address></label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" name="username" class="form-control rounded-3" id="floatingInput" placeholder="Username">
-                    <label for="username">Phone</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="password" name="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-                    <label  for="password">email</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="password" name="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-                    <label  for="password">Password</label>
+                    <label for="password">Password</label>
                 </div>
                 <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit"  fdprocessedid="jmae6a">Sign Up</button>
                 <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
@@ -97,7 +138,6 @@
     <p >Powered by: eliyas k. </p></div>
   
   <script>
-  // Script to open and close sidebar
   function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("myOverlay").style.display = "block";
@@ -108,7 +148,6 @@
     document.getElementById("myOverlay").style.display = "none";
   }
 
-  // Modal Image Gallery
   function onClick(element) {
     document.getElementById("img01").src = element.src;
     document.getElementById("modal01").style.display = "block";
