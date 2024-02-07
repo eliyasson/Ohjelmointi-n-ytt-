@@ -1,3 +1,39 @@
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    include 'login.php';
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM customers WHERE email='$email' AND password='$password'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        $num = mysqli_num_rows($result);
+        if ($num > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $user_type = $row['usertype'];
+
+            session_start();
+            $_SESSION['email'] = $email;
+
+            if ($user_type === 'admin') {
+                header('Location: home.php');
+                exit();
+            } else if ($user_type === 'customer') {
+                header('Location: user.php');
+                exit();
+            }
+        } else {
+            echo "<p class='error-message'>Invalid username or password</p>";
+        }
+    } else {
+        echo "<p class='error-message'>Error in query: " . mysqli_error($conn) . "</p>";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,8 +93,8 @@
                 <div class="modal-body p-5 pt-0">
                   <form action="signin.php" method="post">
                     <div class="form-floating mb-3">
-                      <input type="text" name="username" class="aside2 form-control rounded-3" id="floatingInput" placeholder="Username">
-                      <label for="username">Username</label>
+                      <input type="text" name="email" class="aside2 form-control rounded-3" id="floatingInput" placeholder="Email">
+                      <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3">
                       <input type="password" name="password" class="aside2 form-control rounded-3" id="floatingPassword" placeholder="Password" fdprocessedid="fqch9">

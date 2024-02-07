@@ -1,3 +1,16 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('location: index.php');
+    exit(); 
+}
+require_once 'login.php';
+$conn = new mysqli($hn, $un, $pw, $db);
+if ($conn->connect_error) {
+    die("Fatal connection Error");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +47,7 @@
         <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
       </svg>
         <h1><b>KuvaKantele Photography</b></h1>
+        <h2>Tervetuloa, <?php echo $_SESSION['name']; ?>!</h2>
       </div>
    
       <div class="row">
