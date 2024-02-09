@@ -1,3 +1,25 @@
+<?php
+session_start();
+require_once 'login.php';
+$conn = new mysqli($hn, $un, $pw, $db);
+
+if ($conn->connect_error) {
+    die("Fatal connection Error");
+}
+
+$email = $_SESSION['email'];
+$sql = "SELECT name, address FROM customers WHERE email='$email'";
+$result = mysqli_query($conn, $sql);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $name = $row['name'];
+    $address = $row['address'];
+} else {
+    die("Error in query: " . mysqli_error($conn));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,14 +38,14 @@
     .w3-half img:hover{opacity:1}
     .image-container {
       position: relative;
-      height: 400px; 
+      height: 400px;
       overflow: hidden;
     }
 
   .image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
   }
   </style>
 </head>
@@ -34,69 +56,81 @@
         <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
       </svg>
         <h1><b>KuvaKantele Photography</b></h1>
+        <h2>Tervetuloa, <?php echo $_SESSION['name']; ?>!</h2>
       </div>
-   
       <div class="row">
-        
-   
        <div class="col-3 col-s-3 menu">
          <ul>
-          <li><a href="home.html" onclick="w3_close()" ><i class="fa fa-th-large fa-fw w3-margin-right"></i>Etusivu</a></li>
-          <li><a href="about.html" onclick="w3_close()" ><i class="fa fa-user fa-fw w3-margin-right"></i>About</a></li>
-          <li><a href="packages.html" onclick="w3_close()" ><i class="fa fa-suitcase fa-fw w3-margin-right"></i>Packages</a></li>
-          <li><a href="contact.html" onclick="w3_close()"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Contact</a></li>
+          <li><a href="home.php" onclick="w3_close()" ><i class="fa fa-th-large fa-fw w3-margin-right"></i>Etusivu</a></li>
+          <li><a href="about.php" onclick="w3_close()" ><i class="fa fa-user fa-fw w3-margin-right"></i>About</a></li>
+          <li><a href="packages.php" onclick="w3_close()" ><i class="fa fa-suitcase fa-fw w3-margin-right"></i>Packages</a></li>
+          <li><a href="contact.php" onclick="w3_close()"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Contact</a></li>
           <li><a href="forum.html" onclick="w3_close()"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Forum</a></li>
          </ul>
          <div class="aside">
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container">
-                 <h4 class="w3-center">My Profile</h4>
+                <h4 class="w3-center"><?php echo $name; ?></h4>
                  <p class="w3-center"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
                     <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                   </svg></p>
                  <hr>
-                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-                 <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-                 <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+                 <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> <?php echo $email; ?></p>
+                 <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><?php echo $address; ?> </p>
+
                 </div>
               </div>
           </div>
        </div>
    
        <div class="col-9 col-s-9">
-        
 
-  <!-- About Section -->
-  <div class="w3-container w3-padding-32 w3-center">  
-    <h3 class="w3-black w3-button" ><b>About Us</b></h3><br>
-    <div class="w3-row-padding">
-      <h4><b>Our Story</b></h4>
-      <p class="w3-center w3-padding-64"><span class="w3 w3-wide">Kuvakantele Photography was born from a deep love for the art of capturing moments. Founded by Eliyas k., our team is driven by creativity, passion, and a commitment to delivering stunning visuals that leave a lasting impression.</span></p>
-      <video width="1000" height="600" controls onclick="onClick(this)">
-        <source src="./kuva/VID20231127151342 (1).mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+        <!-- Packages / Pricing Tables -->
+  <div class="w3-container" id="packages" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Packages.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p class="w3-center w3-padding-64"><span class="w3 w3-wide">Don't miss out on our limited-time special packages! Grab the perfect deal that suits your needs and enjoy exclusive benefits. It's the perfect opportunity to experience more for less.</span></p>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-half w3-margin-bottom">
+      <ul class="w3-ul w3-light-grey w3-center">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic Photography</li>
+            <li class="w3-padding-16">Photo Session</li>
+            <li class="w3-padding-16">10 edited images</li>
+            <li class="w3-padding-16">Digital Delivery</li>
+            <li class="w3-padding-16">Online Gallery</li>
+            <li class="w3-padding-16">20% off on additional prints</li>
+            <li class="w3-padding-16">
+                <h2>$199</h2>
+                <span class="w3-opacity">per session</span>
+            </li>
+            <li class="w3-light-grey w3-padding-24">
+                <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
+            </li>
+        </ul>
+    </div>
+        
+    <div class="w3-half">
+      <ul class="w3-ul w3-light-grey w3-center">
+        <li class="w3-red w3-xlarge w3-padding-32">Pro Photography & Filming</li>
+            <li class="w3-padding-16">Full-Day Coverage</li>
+            <li class="w3-padding-16">High-Quality Edited Photos and Videos</li>
+            <li class="w3-padding-16">Professional Editing</li>
+            <li class="w3-padding-16">Online Gallery</li>
+            <li class="w3-padding-16">50% off on additional prints</li>
+            <li class="w3-padding-16">
+                <h2>$249</h2>
+                <span class="w3-opacity">per session</span>
+            </li>
+            <li class="w3-light-grey w3-padding-24">
+                <button class="w3-button w3-red w3-padding-large w3-hover-black">Sign Up</button>
+            </li>
+        </ul>
     </div>
   </div>
-  <hr>
-        <!-- Photo grid (modal) -->
-        <div class="w3-container w3-padding-32 w3-center">  
-          <h3><b>Philosophy</b></h3>
-          <p class="w3-center w3-padding-32"><span class="w3 w3-wide">At Kuvakantele, we believe in the power of storytelling through imagery. Each photograph is a chapter in the narrative of your life, and we strive to make those chapters extraordinary. Our approach blends technical expertise with an artistic touch to create images that speak volumes</span></p>
-          <div class="w3-row-padding">
-            <div class="w3-half">
-              <div class="image-container" ><img src="./kuva/IMG20240124145950.jpg" style="width:100%" onclick="onClick(this)"></div>
-            </div>
-        
-            <div class="w3-half">
-              <div class="image-container"><img src="./kuva/IMG20230503135440.jpg" style="width:100%" onclick="onClick(this)"></div>
-            </div>
-          </div>
-        </div>
-
-       
-        <!-- Modal for full size images on click-->
+  <!-- Modal for full size images on click-->
         <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
           <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
           <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">

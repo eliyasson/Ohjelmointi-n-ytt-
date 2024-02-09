@@ -1,3 +1,25 @@
+<?php
+session_start();
+require_once 'login.php';
+$conn = new mysqli($hn, $un, $pw, $db);
+
+if ($conn->connect_error) {
+    die("Fatal connection Error");
+}
+
+$email = $_SESSION['email'];
+$sql = "SELECT name, address FROM customers WHERE email='$email'";
+$result = mysqli_query($conn, $sql);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $name = $row['name'];
+    $address = $row['address'];
+} else {
+    die("Error in query: " . mysqli_error($conn));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,14 +38,14 @@
     .w3-half img:hover{opacity:1}
     .image-container {
       position: relative;
-      height: 400px; 
+      height: 400px;
       overflow: hidden;
     }
 
   .image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
   }
   </style>
 </head>
@@ -34,11 +56,9 @@
         <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
       </svg>
         <h1><b>KuvaKantele Photography</b></h1>
+        <h2>Tervetuloa, <?php echo $_SESSION['name']; ?>!</h2>
       </div>
-   
       <div class="row">
-        
-   
        <div class="col-3 col-s-3 menu">
          <ul>
           <li><a href="home.html" onclick="w3_close()" ><i class="fa fa-th-large fa-fw w3-margin-right"></i>Etusivu</a></li>
@@ -50,15 +70,15 @@
          <div class="aside">
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container">
-                 <h4 class="w3-center">My Profile</h4>
+                <h4 class="w3-center"><?php echo $name; ?></h4>
                  <p class="w3-center"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
                     <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                   </svg></p>
                  <hr>
-                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-                 <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-                 <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+                 <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> <?php echo $email; ?></p>
+                 <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><?php echo $address; ?> </p>
+
                 </div>
               </div>
           </div>

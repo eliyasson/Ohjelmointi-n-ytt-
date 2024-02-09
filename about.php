@@ -1,15 +1,27 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
-    header('location: index.php');
-    exit(); 
-}
 require_once 'login.php';
 $conn = new mysqli($hn, $un, $pw, $db);
+
 if ($conn->connect_error) {
     die("Fatal connection Error");
+}
 
+
+$email = $_SESSION['email'];
+
+$sql = "SELECT name, address FROM customers WHERE email='$email'";
+$result = mysqli_query($conn, $sql);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $name = $row['name'];
+    $address = $row['address'];
+} else {
+    die("Error in query: " . mysqli_error($conn));
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,14 +41,14 @@ if ($conn->connect_error) {
     .w3-half img:hover{opacity:1}
     .image-container {
       position: relative;
-      height: 400px; 
+      height: 400px;
       overflow: hidden;
     }
 
   .image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
   }
   </style>
 </head>
@@ -49,10 +61,7 @@ if ($conn->connect_error) {
         <h1><b>KuvaKantele Photography</b></h1>
         <h2>Tervetuloa, <?php echo $_SESSION['name']; ?>!</h2>
       </div>
-   
       <div class="row">
-        
-   
        <div class="col-3 col-s-3 menu">
          <ul>
           <li><a href="home.html" onclick="w3_close()" ><i class="fa fa-th-large fa-fw w3-margin-right"></i>Etusivu</a></li>
@@ -64,114 +73,52 @@ if ($conn->connect_error) {
          <div class="aside">
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container">
-                 <h4 class="w3-center">My Profile</h4>
+                <h4 class="w3-center"><?php echo $name; ?></h4>
                  <p class="w3-center"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
                     <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                   </svg></p>
                  <hr>
-                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-                 <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-                 <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+                 <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> <?php echo $email; ?></p>
+                 <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><?php echo $address; ?> </p>
+
                 </div>
               </div>
           </div>
        </div>
    
        <div class="col-9 col-s-9">
-        <div class="w3-container" style="margin-top:80px" id="showcase">
-          <h1 class="w3-jumbo w3-center"><b>Kuvakantele Photography!</b></h3>
-          <h3 class="w3-xxxlarge w3-text-red w3-center"><b>Capturing Moments, Creating Memories.</b></h3>
-         
-          <hr style="width:50px;border:5px solid rgb(255, 0, 0)" class="w3-round w3-center">
-          <p class="w3-center w3-padding-64"><span class="w3 w3-wide">welcomes you to Kuvakantele, where each click tells a unique story. Our passion for photography goes beyond the lens – it's about freezing moments in time, 
-            weaving emotions into pixels, and creating a visual symphony that resonates with your soul.</span></p>
-        </div>
-        <div class="w3-row ">
+        
 
-    <div class="w3-col l3 s6">
-      <div class="w3-container">
-        <div class="w3-display-container">
-          <div class="image-container"><img src="./kuva//IMG20240110161320~2.jpg" style="width:100%" onclick="onClick(this)"></div>
-          
-          <span class="w3-tag w3-display-topleft">New</span>
-          <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">Like<i class="fa fa-shopping-cart"></i></button>
-          </div>
-        </div>
-        
-        <p>Lorem Ipsum<br><b>$24.99</b></p>
-      </div>
-      <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20230503135440.jpg" onclick="onClick(this)"></div>
-        
-        <p>Mega Ripped Jeans<br><b>$19.99</b></p>
-      </div>
-    </div>
-
-    <div class="w3-col l3 s6">
-      <div class="w3-container">
-        <div class="w3-display-container">
-          <div class="image-container"><img src="./kuva/IMG20230812140517.jpg" style="width:100%" onclick="onClick(this)"></div>
-          
-          <span class="w3-tag w3-display-topleft">New</span>
-          <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">Like<i class="fa fa-shopping-cart"></i></button>
-          </div>
-        </div>
-        <p>Mega Ripped Jeans<br><b>$19.99</b></p>
-      </div>
-      <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20231001142208.jpg" style="width:100%" onclick="onClick(this)"></div>
-        
-        <p>Washed Skinny Jeans<br><b>$20.50</b></p>
-      </div>
-    </div>
-
-    <div class="w3-col l3 s6">
-      <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20240102123511.jpg" style="width:100%" onclick="onClick(this)"></div>
-        
-        <p>Washed Skinny Jeans<br><b>$20.50</b></p>
-      </div>
-      <div class="w3-container">
-        <div class="w3-display-container">
-          <div class="image-container"><img src="./kuva/IMG20231116142958_01.jpg" style="width:100%" onclick="onClick(this)"></div>
-          
-          <span class="w3-tag w3-display-topleft">Sale</span>
-          <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-          </div>
-        </div>
-        <p>Vintage Skinny Jeans<br><b class="w3-text-red">$14.99</b></p>
-      </div>
-    </div>
-
-    <div class="w3-col l3 s6">
-      <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20231210105955.jpg" style="width:100%" onclick="onClick(this)"></div>
-        
-        <p>Vintage Skinny Jeans<br><b>$14.99</b></p>
-      </div>
-      <div class="w3-container">
-        <div class="image-container"><img src="./kuva/IMG20231215162916.jpg" style="width:100%" onclick="onClick(this)"></div>
-        
-        <p>Ripped Skinny Jeans<br><b>$24.99</b></p>
-      </div>
+  <!-- About Section -->
+  <div class="w3-container w3-padding-32 w3-center">  
+    <h3 class="w3-black w3-button" ><b>About Us</b></h3><br>
+    <div class="w3-row-padding">
+      <h4><b>Our Story</b></h4>
+      <p class="w3-center w3-padding-64"><span class="w3 w3-wide">Kuvakantele Photography was born from a deep love for the art of capturing moments. Founded by Eliyas k., our team is driven by creativity, passion, and a commitment to delivering stunning visuals that leave a lasting impression.</span></p>
+      <video width="1000" height="600" controls onclick="onClick(this)">
+        <source src="./kuva/VID20231127151342 (1).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </div>
+  <hr>
+        <!-- Photo grid (modal) -->
+        <div class="w3-container w3-padding-32 w3-center">  
+          <h3><b>Philosophy</b></h3>
+          <p class="w3-center w3-padding-32"><span class="w3 w3-wide">At Kuvakantele, we believe in the power of storytelling through imagery. Each photograph is a chapter in the narrative of your life, and we strive to make those chapters extraordinary. Our approach blends technical expertise with an artistic touch to create images that speak volumes</span></p>
+          <div class="w3-row-padding">
+            <div class="w3-half">
+              <div class="image-container" ><img src="./kuva/IMG20240124145950.jpg" style="width:100%" onclick="onClick(this)"></div>
+            </div>
+        
+            <div class="w3-half">
+              <div class="image-container"><img src="./kuva/IMG20230503135440.jpg" style="width:100%" onclick="onClick(this)"></div>
+            </div>
+          </div>
+        </div>
 
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-    </div>
-  </div>
-  
+       
         <!-- Modal for full size images on click-->
         <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
           <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
