@@ -84,7 +84,6 @@ if ($result) {
                  <hr>
                  <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> <?php echo $email; ?></p>
                  <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><?php echo $address; ?> </p>
-
                 </div>
               </div>
           </div>
