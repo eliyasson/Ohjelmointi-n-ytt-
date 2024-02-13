@@ -153,7 +153,8 @@ if ($result) {
       <i class="fa fa-twitter w3-hover-opacity"></i>
       <i class="fa fa-linkedin w3-hover-opacity"></i>
     </footer>
-    <p >Powered by: eliyas k. </p></div>
+    <p >Powered by: eliyas k. </p>
+  </div>
   
   <script>
   // Script to open and close sidebar

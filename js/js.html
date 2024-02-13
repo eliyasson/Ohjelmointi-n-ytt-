@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Spirax' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="tyylit.css">
+    <title>Interactive Web Page</title>
+    <style>
+         body, h1, h2, h3, h4, h5 { font-family: "Poppins", sans-serif; }
+        body { font-size: 16px; }
+        .w3-half img { margin-bottom: -6px; margin-top: 16px; opacity: 0.8; cursor: pointer; }
+        .w3-half img:hover { opacity: 1; }
+        .image-container { position: relative; height: 400px; overflow: hidden; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; }
+        .fixed-button {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        #changeColorBtn {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #myForm {
+            max-width: 300px;
+            margin: 20px auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #myModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        #modalContent {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Interactive Web Page</h1>
+</header>
+
+<button id="changeColorBtn">Change Background Color</button>
+
+<form id="myForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="button" onclick="validateForm()">Submit</button>
+</form>
+
+<div id="myModal">
+    <div id="modalContent">
+        <p>This is a modal. Click outside to close.</p>
+    </div>
+</div>
+<button class="fixed-button" onclick="window.location.href='Drum-kit'">
+    <i class="fa fa-gamepad"></i>
+</button>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    // Change background color on button click
+    $("#changeColorBtn").click(function() {
+        $("body").css("background-color", getRandomColor());
+    });
+
+    // Form validation
+    function validateForm() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        if (username === "" || password === "") {
+            alert("Username and password are required!");
+        } else {
+            alert("Form submitted successfully!");
+        }
+    }
+
+    // Display modal on page load
+    $(document).ready(function() {
+        $("#myModal").fadeIn();
+    });
+
+    // Close modal on click outside
+    $(document).mouseup(function(e) {
+        var modal = $("#modalContent");
+        if (!modal.is(e.target) && modal.has(e.target).length === 0) {
+            $("#myModal").fadeOut();
+        }
+    });
+
+    // Generate random color
+    function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
+<script>
+    // Script to open and close sidebar
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Modal Image Gallery
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+    }
+</script>
+</body>
+</html>

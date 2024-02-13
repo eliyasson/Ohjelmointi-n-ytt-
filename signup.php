@@ -6,29 +6,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $address = $_POST['address'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
     $usertype = $_POST['usertype'];
-
+    $password = $_POST['password'];
 
     if (empty($name) || empty($address) || empty($phone) || empty($email) || empty($usertype) || empty($password)) {
         echo "<p class='error-message'>All fields are required.</p>";
-    } elseif ($usertype !== 'librarian' && $usertype !== 'customer') {
+    } elseif ($usertype !== 'admin' && $usertype !== 'customer') {
         echo "<p class='error-message'>Please select a valid user type (librarian or customer).</p>";
     } else {
+        // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $insertQuery = "INSERT INTO customers (name, address, phone, email, usertype, password)
             VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $insertQuery);
 
-        mysqli_stmt_bind_param($stmt, "sssss", $name, $address, $phone, $email, $usertype, $password);
+        // Bind parameters to the prepared statement
+        mysqli_stmt_bind_param($stmt, "ssssss", $name, $address, $phone, $email, $usertype, $password);
 
         $insertResult = mysqli_stmt_execute($stmt);
 
         if ($insertResult) {
             echo "<p class='success-message'>Signup Successful</p>";
-            header('Location: index.html');
+            if ($usertype === 'admin') {
+                header('Location: admin_sign.php');
+            } elseif ($usertype === 'customer') {
+                header('Location: index.php');
+            }
+
             exit();
-        } else {
+           } else {
             echo "<p class='error-message'>Insertion failed: " . mysqli_error($conn) . "</p>";
         }
         mysqli_stmt_close($stmt);
